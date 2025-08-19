@@ -1,39 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="jp">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Event Recommendation App</title>
-  
+  <link rel="icon" href="favicon.ico">
 </head>
 <body>
+  <script src="main.js" defer></script>
   <header>
     <a href="/">ホーム</a>
-    <a href="/login">使い方</a>
-    <a href="/events">イベント登録</a>
-    <a href="/login">ログイン</a>
+    <div class="header-links">
+      <a href="/how-to-use">使い方</a>
+      <a href="/events">イベント登録</a>
+      <a href="/login">ログイン</a>
+    </div>
   </header>
   <main>
-    <h1>イベント推薦アプリへようこそ</h1>
+    <h1>イベント推薦アプリへようこそ!</h1>
     <p>予定が空いたら行きたいイベント登録アプリ</p>
-    <div>
+    <div class="event-list">
       <h2>イベントを探す</h2>
-      <form action="/events" method="GET">
+      <form id="form_eventFind">
         <label for="day">日付:</label>
         <input type="date" id="day" name="day" required>
         <button type="submit">検索</button>
       </form>
     </div>
-    <div>
+    <div class="event-add">
       <h2>イベントを登録する</h2>
-      <form action="/events" method="POST">
+      <form id="form_eventAdd">
         <label for="event-name">イベント名:</label>
-        <input type="text" id="event-name" name="event-name" required>
+        <input type="text" id="event-name" name="event-name" required> <br>
         <label for="event-duration">開催期間:</label>
-        <input type="date" id="event-start" name="event-start" required>
-        <input type="date" id="event-end" name="event-end" required>
+        <input type="date" id="event-start" name="event-start" required> ～
+        <input type="date" id="event-end" name="event-end" required> <br>
         <label for="event-location">場所:</label>
-        <input type="text" id="event-location" name="event-location" required>
+        <input type="text" id="event-location" name="event-location" required> <br>
         <button type="submit">登録</button>
       </form>
     </div>
