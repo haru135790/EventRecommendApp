@@ -17,6 +17,8 @@ header {
     display: grid;
     grid-template: 
     'logo header-links' 1fr / 80px auto;
+    position: sticky;
+    top: 0;
 }
 
 .header-links {
@@ -55,6 +57,18 @@ main {
 }
 
 .event-list {
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    margin: 20px;
+}
+
+.search-results {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
     background-color: #f0f0f0;
     border: 2px solid #ccc;

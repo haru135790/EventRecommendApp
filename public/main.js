@@ -14,3 +14,13 @@ eventaddform.addEventListener("submit", (event) => {
     const eventData = Object.fromEntries(formData);
     console.log(`入力欄の値: ${JSON.stringify(eventData)}`);
 });
+
+const addEventforGoogleCalendar = (eventData) => {
+    const eventTitle = encodeURIComponent(eventData.title);
+    const eventDate = document.getElementById("day").value;
+    const eventLocation = encodeURIComponent(eventData.location);
+
+    const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${eventDate}/${eventDate}&location=${eventLocation}`;
+
+    window.open(googleCalendarUrl, '_blank');
+};
