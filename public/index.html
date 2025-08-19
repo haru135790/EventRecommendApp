@@ -1,29 +1,48 @@
 <!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <title>ようこそ、jigインターンへ！</title>
-    <link rel="icon" href="data:image/x-icon;,">
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-      }
-      html, body {
-        height: 100vh;
-        width: 100%;
-      }
-      body {
-        display: grid;
-        place-content: center;
-      }
-    </style>
-    <script type="module">
-      const message = await fetch("/welcome-message")
-      document.querySelector("body").innerHTML = `<h1>${await message.text()}</h1>`
-    </script>
-  </head>
-  <body>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Recommendation App</title>
+  
+</head>
+<body>
+  <header>
+    <a href="/">ホーム</a>
+    <a href="/login">使い方</a>
+    <a href="/events">イベント登録</a>
+    <a href="/login">ログイン</a>
+  </header>
+  <main>
+    <h1>イベント推薦アプリへようこそ</h1>
+    <p>予定が空いたら行きたいイベント登録アプリ</p>
+    <div>
+      <h2>イベントを探す</h2>
+      <form action="/events" method="GET">
+        <label for="day">日付:</label>
+        <input type="date" id="day" name="day" required>
+        <button type="submit">検索</button>
+      </form>
+    </div>
+    <div>
+      <h2>イベントを登録する</h2>
+      <form action="/events" method="POST">
+        <label for="event-name">イベント名:</label>
+        <input type="text" id="event-name" name="event-name" required>
+        <label for="event-duration">開催期間:</label>
+        <input type="date" id="event-start" name="event-start" required>
+        <input type="date" id="event-end" name="event-end" required>
+        <label for="event-location">場所:</label>
+        <input type="text" id="event-location" name="event-location" required>
+        <button type="submit">登録</button>
+      </form>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 イベント推薦アプリ</p>
+    <a href="/about">About Us</a>
+    <a href="/contact">Contact</a>
+    <a href="/privacy">Privacy Policy</a>
+  </footer>
+</body>
 </html>
