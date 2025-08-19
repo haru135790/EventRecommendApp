@@ -8,7 +8,7 @@ body {
     grid-template:
     'header header' 80px
     'main right-column' auto
-    'footer footer' auto / auto 200px;
+    'footer footer' 80px / auto 400px;
 }
 
 header {
@@ -48,8 +48,9 @@ aside#left {
     background-color: lightsalmon;
 }
 main {
-    height: calc(100vh - 80px);
+    min-height: calc(100vh - 160px);
     grid-area: main;
+    padding: 20px;
     background-color: #B4E50D;
 }
 
@@ -70,8 +71,9 @@ main {
 }
 
 aside#right {
-    grid-area: right-colmun;
+    grid-area: right-column;
     background-color: lightsalmon;
+    padding: 20px;
 }
 footer {
     grid-area: footer;
