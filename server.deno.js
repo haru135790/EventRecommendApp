@@ -7,6 +7,18 @@ Deno.serve(async (req) => {
   if (req.method === "GET" && pathname === "/welcome-message") {
     return new Response("jigインターンへようこそ！");
   }
+  if (req.method === "POST" && pathname === "/find-event") {
+    const event = await req.json();
+    console.log("Finding event:", event);
+    return new Response(
+      JSON.stringify([{
+        name: "testname",
+        date: "2023-01-01",
+        location: "テスト会場",
+      }]),
+      { status: 200 }
+    );
+  }
 
   return serveDir(req, {
     fsRoot: "public",
