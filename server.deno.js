@@ -4,24 +4,42 @@ Deno.serve(async (req) => {
   const pathname = new URL(req.url).pathname;
   console.log(pathname);
 
-  if (req.method === "GET" && pathname === "/welcome-message") {
-    return new Response("jigインターンへようこそ！");
-  }
+  const kv = await Deno.openKv();
+
+  // イベント検索処理
   if (req.method === "POST" && pathname === "/find-event") {
     const event = await req.json();
+    const listResult = await kv.list({ prefix: ["event"] });
+    const foundEvent = [];
+
+    for await (const item of listResult) {
+
+      const itemStart = new Date(item.value.event_start);
+      const itemEnd = new Date(item.value.event_end);
+      const eventDate = new Date(event.date);
+
+      console.log("Checking event:", item.value);
+      console.log(event);
+      console.log("Item start:", itemStart, "Item end:", itemEnd, "Event date:", eventDate);
+      if (itemStart <= eventDate && eventDate <= itemEnd) {
+        foundEvent.push(item.value);
+        console.log("Found event:", item.value);
+      }
+    }
+
     console.log("Finding event:", event);
     return new Response(
-      JSON.stringify([{
-        name: "testName",
-        date: "2023-01-01",
-        location: "テスト会場",
-      }]),
+      JSON.stringify(foundEvent),
       { status: 200 }
     );
   }
+
+  // イベント追加処理
   if (req.method === "POST" && pathname === "/add-event") {
     const event = await req.json();
-    console.log("Adding event:", event);
+    const myUUID = crypto.randomUUID();
+
+    kv.set(["event", myUUID], event);
     return new Response(JSON.stringify({ message: "イベント追加成功" }), { status: 200 });
   }
 

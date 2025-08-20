@@ -1,6 +1,7 @@
 const eventFindForm = document.getElementById("form_eventFind");
 const eventAddForm = document.getElementById("form_eventAdd");
 
+// イベント検索処理
 eventFindForm.addEventListener("submit", async (event) => {
     event.preventDefault(); // submitイベントの本来の動作を止める
     const formData = new FormData(event.target);
@@ -23,7 +24,7 @@ eventFindForm.addEventListener("submit", async (event) => {
         result.forEach(event => {
             const li = document.createElement("li");
             const link = document.createElement("a");
-            li.textContent = `${event.name} - ${event.date} - ${event.location} `;
+            li.textContent = `${event.event_name} - ${event.event_start} ～ ${event.event_end} - ${event.event_location} `;
             link.classList.add("google-calendar-link");
             link.href = "#";
             link.textContent = "Google Calendarに追加";
@@ -41,6 +42,7 @@ eventFindForm.addEventListener("submit", async (event) => {
 
     });
 
+// イベント追加処理
 eventAddForm.addEventListener("submit", async (event) => {
     event.preventDefault(); // submitイベントの本来の動作を止める
     const formData = new FormData(event.target);
@@ -69,7 +71,7 @@ eventAddForm.addEventListener("submit", async (event) => {
 
 const addEventForGoogleCalendar = (eventData) => {
     const eventTitle = encodeURIComponent(eventData.name);
-    const eventDate = document.getElementById("day").value;
+    const eventDate = document.getElementById("date").value;
     const eventLocation = encodeURIComponent(eventData.location);
 
     const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${eventDate}/${eventDate}&location=${eventLocation}`;

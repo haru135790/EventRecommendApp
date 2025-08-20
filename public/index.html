@@ -23,8 +23,8 @@
     <div class="event-list">
       <h2>イベントを探す</h2>
       <form id="form_eventFind">
-        <label for="day">日付:</label>
-        <input type="date" id="day" name="day" required>
+        <label for="date">日付:</label>
+        <input type="date" id="date" name="date" required>
         <button type="submit">検索</button>
       </form>
       <div class="search-results">
@@ -42,13 +42,13 @@
     <div class="event-add">
       <h2>イベントを登録する</h2>
       <form id="form_eventAdd">
-        <label for="event-name">イベント名:</label>
-        <input type="text" id="event-name" name="event-name" required> <br>
-        <label for="event-duration">開催期間:</label>
-        <input type="date" id="event-start" name="event-start" required> ～
-        <input type="date" id="event-end" name="event-end" required> <br>
-        <label for="event-location">場所:</label>
-        <input type="text" id="event-location" name="event-location" required> <br>
+        <label for="event_name">イベント名:</label>
+        <input type="text" id="event_name" name="event_name" required> <br>
+        <label for="event_duration">開催期間:</label>
+        <input type="date" id="event_start" name="event_start" required> ～
+        <input type="date" id="event_end" name="event_end" required> <br>
+        <label for="event_location">場所:</label>
+        <input type="text" id="event_location" name="event_location" required> <br>
         <button type="submit">登録</button>
       </form>
       <div id="event-add-result"></div>
