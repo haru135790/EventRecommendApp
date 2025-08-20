@@ -1,7 +1,7 @@
-const eventfindform = document.getElementById("form_eventFind");
-const eventaddform = document.getElementById("form_eventAdd");
+const eventFindForm = document.getElementById("form_eventFind");
+const eventAddForm = document.getElementById("form_eventAdd");
 
-eventfindform.addEventListener("submit", async (event) => {
+eventFindForm.addEventListener("submit", async (event) => {
     event.preventDefault(); // submitイベントの本来の動作を止める
     const formData = new FormData(event.target);
     const eventData = Object.fromEntries(formData);
@@ -24,11 +24,12 @@ eventfindform.addEventListener("submit", async (event) => {
             const li = document.createElement("li");
             const link = document.createElement("a");
             li.textContent = `${event.name} - ${event.date} - ${event.location} `;
+            link.classList.add("google-calendar-link");
             link.href = "#";
             link.textContent = "Google Calendarに追加";
             link.addEventListener("click", (e) => {
                 e.preventDefault();
-                addEventforGoogleCalendar(event);
+                addEventForGoogleCalendar(event);
             });
             li.appendChild(link);
             resultList.appendChild(li);
@@ -40,19 +41,38 @@ eventfindform.addEventListener("submit", async (event) => {
 
     });
 
-eventaddform.addEventListener("submit", (event) => {
+eventAddForm.addEventListener("submit", async (event) => {
     event.preventDefault(); // submitイベントの本来の動作を止める
     const formData = new FormData(event.target);
     const eventData = Object.fromEntries(formData);
-    console.log(`入力欄の値: ${JSON.stringify(eventData)}`);
+    const resultDiv = document.getElementById("event-add-result");
+
+    const response = await fetch("/add-event", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(eventData),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+        resultDiv.textContent = "イベント追加成功";
+        event.target.reset();
+        console.log(`イベント追加成功: ${JSON.stringify(result)}`);
+    } else {
+        resultDiv.textContent = `イベント追加失敗: ${result.message}`;
+        console.error(`イベント追加エラー: ${result.message}`);
+    }
 });
 
-const addEventforGoogleCalendar = (eventData) => {
+const addEventForGoogleCalendar = (eventData) => {
     const eventTitle = encodeURIComponent(eventData.name);
     const eventDate = document.getElementById("day").value;
     const eventLocation = encodeURIComponent(eventData.location);
 
     const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${eventDate}/${eventDate}&location=${eventLocation}`;
 
-    window.open(googleCalendarUrl, '_blank');
+    globalThis.window.open(googleCalendarUrl, '_blank');
 };

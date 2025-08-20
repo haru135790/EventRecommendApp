@@ -12,12 +12,17 @@ Deno.serve(async (req) => {
     console.log("Finding event:", event);
     return new Response(
       JSON.stringify([{
-        name: "testname",
+        name: "testName",
         date: "2023-01-01",
         location: "テスト会場",
       }]),
       { status: 200 }
     );
+  }
+  if (req.method === "POST" && pathname === "/add-event") {
+    const event = await req.json();
+    console.log("Adding event:", event);
+    return new Response(JSON.stringify({ message: "イベント追加成功" }), { status: 200 });
   }
 
   return serveDir(req, {
