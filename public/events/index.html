@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/common.css">
 </head>
 <body>
+  <script src="allEvent.js" defer></script>
   <header>
     <a href="/">ホーム</a>
     <div class="header-links">
@@ -18,22 +19,40 @@
   </header>
 
   <main>
-    <h1>アプリの使い方</h1>
-    <h2>どんな時に使う？</h2>
-    <div>
-        <p>「お、この日は予定が空きそうだぞ」</p>
-        <p>「そういえば行きたかったイベントがあったような...」</p>
+
+    <h1>登録イベント一覧</h1>
+    <div class="event-list">
+      <table id="event-table">
+        <thead>
+            <tr>
+            <th>イベント名</th>
+            <th>開催期間</th>
+            <th>場所</th>
+            <th>カレンダーに追加</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>イベント1</td>
+            <td>2025年1月1日~2025年1月3日</td>
+            <td>東京</td>
+            <td><button>追加</button></td>
+            </tr>
+            <tr>
+            <td>イベント2</td>
+            <td>2025年2月10日~2025年2月12日</td>
+            <td>大阪</td>
+            <td><button>追加</button></td>
+            </tr>
+            <tr>
+            <td>イベント3</td>
+            <td>2025年3月15日~2025年3月17日</td>
+            <td>福岡</td>
+            <td><button>追加</button></td>
+            </tr>
+        </tbody>
+        </table>
     </div>
-    <div>
-        <p>「このイベント予定が空いたら行ってみたいな...」</p>
-    </div>
-    <div>
-        <p>そんな時に使うアプリです。</p>
-    </div>
-    <h2>イベントを探す</h2>
-    <p>ホームページから「イベントを探す」セクションに移動し、希望の日付を選択して検索ボタンをクリックしてください。</p>
-    <h2>イベントを登録する</h2>
-    <p>「イベントを登録する」セクションに移動し、イベント名、開催期間、場所を入力して登録ボタンをクリックしてください。</p>
   </main>
   
   <aside id="right">

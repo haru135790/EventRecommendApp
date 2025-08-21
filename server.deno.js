@@ -43,6 +43,16 @@ Deno.serve(async (req) => {
     return new Response(JSON.stringify({ message: "イベント追加成功" }), { status: 200 });
   }
 
+  // イベント全件取得
+  if (req.method === "POST" && pathname === "/getAllEvents") {
+    const listResult = await kv.list({ prefix: ["event"] });
+    const events = [];
+    for await (const item of listResult) {
+      events.push(item);
+    }
+    return new Response(JSON.stringify(events), { status: 200 });
+  }
+
   return serveDir(req, {
     fsRoot: "public",
     urlRoot: "",
