@@ -1,20 +1,23 @@
-globalThis.window.addEventListener('DOMContentLoaded', async function() {
+globalThis.window.addEventListener("DOMContentLoaded", async function () {
     const response = await fetch("/getAllEvents", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-        }
+        },
     });
     const result = await response.json();
 
     if (response.ok) {
         console.log(result);
-        const resultList = document.getElementById("event-table").getElementsByTagName("tbody")[0];
+        const resultList =
+            document.getElementById("event-table").getElementsByTagName(
+                "tbody",
+            )[0];
 
         while (resultList.firstChild) {
             resultList.removeChild(resultList.firstChild);
         }
-        result.forEach(data => {
+        result.forEach((data) => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
             <td>${data.value.event_name}</td>
@@ -43,7 +46,11 @@ const deleteEvent = async (id) => {
         return;
     }
 
-    const password = globalThis.window.prompt("パスワードを入力してください", "", "password");
+    const password = globalThis.window.prompt(
+        "パスワードを入力してください",
+        "",
+        "password",
+    );
 
     const response = await fetch("/delete-event", {
         method: "POST",

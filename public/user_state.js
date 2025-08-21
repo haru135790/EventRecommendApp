@@ -1,4 +1,6 @@
-const username = document.cookie.split('; ').find(row => row.startsWith('username='));
+const username = document.cookie.split("; ").find((row) =>
+    row.startsWith("username=")
+);
 
 // ユーザーがログインしている場合の処理
 if (username) {
@@ -12,6 +14,7 @@ if (username) {
         document.cookie = "username=; path=/; max-age=0"; // クッキーを削除
         location.reload(); // ページをリロード
     });
-    const loggedIn_username = username.split('=')[1];
-    document.getElementById("account_info").textContent = `${loggedIn_username} でログイン中`;
+    const loggedIn_username = username.split("=")[1];
+    document.getElementById("account_info").textContent =
+        `${loggedIn_username} でログイン中`;
 }

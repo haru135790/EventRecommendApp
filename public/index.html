@@ -1,97 +1,120 @@
 <!DOCTYPE html>
 <html lang="jp">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Event Recommendation App</title>
-  <link rel="icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/common.css">
-</head>
-<body>
-  <header>
-    <a href="/">ホーム</a>
-    <div class="header-links">
-      <a href="/how_to_use">使い方</a>
-      <a href="/events">登録イベント一覧</a>
-      <a href="/login" id="login_link">ログイン</a>
-    </div>
-  </header>
-  <main>
-    <div id="account_info"></div>
-    <h1>イベント推薦アプリへようこそ!</h1>
-    <p>予定が空いたら行きたいイベント登録アプリ</p>
-    <div class="event-list">
-      <h2>イベントを探す</h2>
-      <form id="form_eventFind">
-        <label for="date">日付:</label>
-        <input type="date" id="date" name="date" required>
-        <button type="submit">検索</button>
-      </form>
-      <div class="search-results">
-        <h3>検索結果</h3>
-        <div>
-            <table id="search-result-table">
-            <thead>
-              <tr>
-              <th>イベント名</th>
-              <th>開催期間</th>
-              <th>場所</th>
-              <th>カレンダーに追加</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-              <td>イベント1</td>
-              <td>2025年1月1日~2025年1月3日</td>
-              <td>東京</td>
-              <td><button>追加</button></td>
-              </tr>
-              <tr>
-              <td>イベント2</td>
-              <td>2025年2月10日~2025年2月12日</td>
-              <td>大阪</td>
-              <td><button>追加</button></td>
-              </tr>
-              <tr>
-              <td>イベント3</td>
-              <td>2025年3月15日~2025年3月17日</td>
-              <td>福岡</td>
-              <td><button>追加</button></td>
-              </tr>
-            </tbody>
-            </table>
-        </div>
-      </div>
-    </div>
-    <div class="event-add">
-      <h2>イベントを登録する</h2>
-      <form id="form_eventAdd">
-        <label for="event_name">イベント名:</label>
-        <input type="text" id="event_name" name="event_name" required> <br>
-        <label for="event_duration">開催期間:</label>
-        <input type="date" id="event_start" name="event_start" required> ～
-        <input type="date" id="event_end" name="event_end" required> <br>
-        <label for="event_location">場所:</label>
-        <input type="text" id="event_location" name="event_location" required> <br>
-        <button type="submit">登録</button>
-      </form>
-      <div id="event-add-result"></div>
-    </div>
-  </main>
-  <aside id="right">
-    <div id="calendar">
-      <h2>カレンダー</h2>
-      <!-- ここにカレンダーを表示 -->
-      <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FTokyo&showPrint=0&showTitle=0&showCalendars=0&showTabs=0&showTz=0&src=amEuamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230b8043" style="border-width:0" width="100%" height="500" frameborder="0" scrolling="no"></iframe>
-    </div>
-  </aside>
-  <footer>
-    <p>&copy; 2025 イベント推薦アプリ</p>
-    <a href="/about">About Us</a>
-    <a href="/contact">Contact</a>
-    <a href="/privacy">Privacy Policy</a>
-  </footer>
-  <script src="main.js" defer></script>
-  <script src="user_state.js" defer></script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Event Recommendation App</title>
+        <link rel="icon" href="/favicon.ico">
+        <link rel="stylesheet" href="/common.css">
+    </head>
+    <body>
+        <header>
+            <a href="/">ホーム</a>
+            <div class="header-links">
+                <a href="/how_to_use">使い方</a>
+                <a href="/events">登録イベント一覧</a>
+                <a href="/login" id="login_link">ログイン</a>
+            </div>
+        </header>
+        <main>
+            <div id="account_info"></div>
+            <h1>イベント推薦アプリへようこそ!</h1>
+            <p>予定が空いたら行きたいイベント登録アプリ</p>
+            <div class="event-list">
+                <h2>イベントを探す</h2>
+                <form id="form_eventFind">
+                    <label for="date">日付:</label>
+                    <input type="date" id="date" name="date" required>
+                    <button type="submit">検索</button>
+                </form>
+                <div class="search-results">
+                    <h3>検索結果</h3>
+                    <div>
+                        <table id="search-result-table">
+                            <thead>
+                                <tr>
+                                    <th>イベント名</th>
+                                    <th>開催期間</th>
+                                    <th>場所</th>
+                                    <th>カレンダーに追加</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>イベント1</td>
+                                    <td>2025年1月1日~2025年1月3日</td>
+                                    <td>東京</td>
+                                    <td><button>追加</button></td>
+                                </tr>
+                                <tr>
+                                    <td>イベント2</td>
+                                    <td>2025年2月10日~2025年2月12日</td>
+                                    <td>大阪</td>
+                                    <td><button>追加</button></td>
+                                </tr>
+                                <tr>
+                                    <td>イベント3</td>
+                                    <td>2025年3月15日~2025年3月17日</td>
+                                    <td>福岡</td>
+                                    <td><button>追加</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="event-add">
+                <h2>イベントを登録する</h2>
+                <form id="form_eventAdd">
+                    <label for="event_name">イベント名:</label>
+                    <input
+                        type="text"
+                        id="event_name"
+                        name="event_name"
+                        required
+                    > <br>
+                    <label for="event_duration">開催期間:</label>
+                    <input
+                        type="date"
+                        id="event_start"
+                        name="event_start"
+                        required
+                    > ～
+                    <input type="date" id="event_end" name="event_end" required>
+                    <br>
+                    <label for="event_location">場所:</label>
+                    <input
+                        type="text"
+                        id="event_location"
+                        name="event_location"
+                        required
+                    > <br>
+                    <button type="submit">登録</button>
+                </form>
+                <div id="event-add-result"></div>
+            </div>
+        </main>
+        <aside id="right">
+            <div id="calendar">
+                <h2>カレンダー</h2>
+                <!-- ここにカレンダーを表示 -->
+                <iframe
+                    src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FTokyo&showPrint=0&showTitle=0&showCalendars=0&showTabs=0&showTz=0&src=amEuamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230b8043"
+                    style="border-width: 0"
+                    width="100%"
+                    height="500"
+                    frameborder="0"
+                    scrolling="no"
+                ></iframe>
+            </div>
+        </aside>
+        <footer>
+            <p>&copy; 2025 イベント推薦アプリ</p>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact</a>
+            <a href="/privacy">Privacy Policy</a>
+        </footer>
+        <script src="main.js" defer></script>
+        <script src="user_state.js" defer></script>
+    </body>
 </html>

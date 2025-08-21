@@ -6,7 +6,9 @@ eventFindForm.addEventListener("submit", async (event) => {
     event.preventDefault(); // submitイベントの本来の動作を止める
     const formData = new FormData(event.target);
     const eventData = Object.fromEntries(formData);
-    const username = document.cookie.split('; ').find(row => row.startsWith('username='));
+    const username = document.cookie.split("; ").find((row) =>
+        row.startsWith("username=")
+    );
     const response = await fetch("/find-event", {
         method: "POST",
         headers: {
@@ -19,13 +21,16 @@ eventFindForm.addEventListener("submit", async (event) => {
 
     if (response.ok) {
         console.log(result);
-        const resultList = document.getElementById("search-result-table").getElementsByTagName("tbody")[0];
+        const resultList =
+            document.getElementById("search-result-table").getElementsByTagName(
+                "tbody",
+            )[0];
 
         while (resultList.firstChild) {
             resultList.removeChild(resultList.firstChild);
         }
 
-        result.forEach(data => {
+        result.forEach((data) => {
             const tr = document.createElement("tr");
             const link = document.createElement("a");
             tr.innerHTML = `
@@ -49,19 +54,21 @@ eventFindForm.addEventListener("submit", async (event) => {
     } else {
         console.error(`エラー: ${result.message}`);
     }
-
-    });
+});
 
 // イベント追加処理
 eventAddForm.addEventListener("submit", async (event) => {
     event.preventDefault(); // submitイベントの本来の動作を止める
     const formData = new FormData(event.target);
     const eventData = Object.fromEntries(formData);
-    const username = document.cookie.split('; ').find(row => row.startsWith('username='));
+    const username = document.cookie.split("; ").find((row) =>
+        row.startsWith("username=")
+    );
     const resultDiv = document.getElementById("event-add-result");
 
     if (eventData.event_start > eventData.event_end) {
-        resultDiv.textContent = "エラー : イベントの開始日時は終了日時より前である必要があります。";
+        resultDiv.textContent =
+            "エラー : イベントの開始日時は終了日時より前である必要があります。";
         return;
     }
 
@@ -90,7 +97,8 @@ const addEventForGoogleCalendar = (eventData) => {
     const eventDate = document.getElementById("date").value;
     const eventLocation = encodeURIComponent(eventData.event_location);
 
-    const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${eventDate}&location=${eventLocation}`;
+    const googleCalendarUrl =
+        `https://www.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${eventDate}&location=${eventLocation}`;
 
     globalThis.window.open(googleCalendarUrl);
 };

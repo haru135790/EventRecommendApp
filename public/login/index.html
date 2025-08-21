@@ -1,54 +1,69 @@
 <!DOCTYPE html>
 <html lang="jp">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>使い方 | Event Recommendation App</title>
-  <link rel="icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/common.css">
-</head>
-<body>
-  <header>
-    <a href="/">ホーム</a>
-    <div class="header-links">
-      <a href="/how_to_use">使い方</a>
-      <a href="/events">登録イベント一覧</a>
-      <a href="/login" id="login_link">ログイン</a>
-    </div>
-  </header>
-  <main>
-    <div id="account_info"></div>
-    <h1>ログイン</h1>
-        <form id="login-form">
-            <div id="error" style="color: red;"></div>
-            <div>
-                <label>ユーザー名:</label>
-                <input type="text" id="username" name="username" required />
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>使い方 | Event Recommendation App</title>
+        <link rel="icon" href="/favicon.ico">
+        <link rel="stylesheet" href="/common.css">
+    </head>
+    <body>
+        <header>
+            <a href="/">ホーム</a>
+            <div class="header-links">
+                <a href="/how_to_use">使い方</a>
+                <a href="/events">登録イベント一覧</a>
+                <a href="/login" id="login_link">ログイン</a>
             </div>
+        </header>
+        <main>
+            <div id="account_info"></div>
+            <h1>ログイン</h1>
+            <form id="login-form">
+                <div id="error" style="color: red"></div>
+                <div>
+                    <label>ユーザー名:</label>
+                    <input type="text" id="username" name="username" required />
+                </div>
+                <div>
+                    <label>パスワード:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                    />
+                </div>
+                <button type="submit">ログイン</button>
+            </form>
             <div>
-                <label>パスワード:</label>
-                <input type="password" id="password" name="password" required />
+                まだアカウントをお持ちでないですか？ <a href="/register"
+                >登録</a>
             </div>
-            <button type="submit">ログイン</button>
-        </form>
-        <div>まだアカウントをお持ちでないですか？ <a href="/register">登録</a></div>
-  </main>
-  
-  <aside id="right">
-    <div id="calendar">
-      <h2>カレンダー</h2>
-      <!-- ここにカレンダーを表示 -->
-      <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FTokyo&showPrint=0&showTitle=0&showCalendars=0&showTabs=0&showTz=0&src=amEuamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230b8043" style="border-width:0" width="100%" height="500" frameborder="0" scrolling="no"></iframe>
-    </div>
-  </aside>
+        </main>
 
-  <footer>
-    <p>&copy; 2025 イベント推薦アプリ</p>
-    <a href="/about">About Us</a>
-    <a href="/contact">Contact</a>
-    <a href="/privacy">Privacy Policy</a>
-  </footer>
-    <script src="login.js"></script>
-    <script src="/user_state.js"></script>
-</body>
+        <aside id="right">
+            <div id="calendar">
+                <h2>カレンダー</h2>
+                <!-- ここにカレンダーを表示 -->
+                <iframe
+                    src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FTokyo&showPrint=0&showTitle=0&showCalendars=0&showTabs=0&showTz=0&src=amEuamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230b8043"
+                    style="border-width: 0"
+                    width="100%"
+                    height="500"
+                    frameborder="0"
+                    scrolling="no"
+                ></iframe>
+            </div>
+        </aside>
+
+        <footer>
+            <p>&copy; 2025 イベント推薦アプリ</p>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact</a>
+            <a href="/privacy">Privacy Policy</a>
+        </footer>
+        <script src="login.js"></script>
+        <script src="/user_state.js"></script>
+    </body>
 </html>
