@@ -1,6 +1,19 @@
 * {
     box-sizing: border-box;
     margin: 0;
+    --primary: #476730;
+    --primary-container: #c7eea9;
+    --secondary: #56624b;
+    --secondary-container: #d9e7ca;
+    --third: #386665;
+    --third-container: #bbecea;
+    --error: #ba1a1a;
+    --error-container: #ffdad6;
+    --surface: #2e312a;
+    --bg-color: #f9faf0;
+    --container: #edefe4;
+
+    --lighter-current: color-mix(in srgb, currentColor 30%, #fff);
 }
 
 body {
@@ -13,7 +26,7 @@ body {
 
 header {
     grid-area: header;
-    background-color: #78C841;
+    background-color: var(--primary-container);
     display: grid;
     grid-template: 
     'logo header-links' 1fr / 80px auto;
@@ -33,33 +46,33 @@ header {
     text-decoration: none;
     color: inherit;
     padding: 15px;
-    border: 1px solid #888;
+    border: 1px solid var(--secondary);
     border-radius: 4px;
     margin-top: auto;
     margin-bottom: auto;
-    background-color: #FF9B2F;
+    background-color: var(--primary-container);
     transition: background 0.2s;
 }
 
 .header-links a:hover {
-    background: #FB4141;
+    background-color: var(--lighter-current);
 }
 
 aside#left {
     grid-area: left-column;
-    background-color: lightsalmon;
+    background-color: var(--bg-color);
 }
 main {
     min-height: calc(100vh - 160px);
     grid-area: main;
     padding: 20px;
-    background-color: #B4E50D;
+    background-color: var(--bg-color);
 }
 
 .event-list {
     padding: 20px;
-    background-color: #f0f0f0;
-    border: 2px solid #ccc;
+    background-color: var(--bg-color);
+    border: 2px solid var(--secondary);
     border-radius: 4px;
     margin: 20px;
 }
@@ -70,26 +83,43 @@ main {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #f0f0f0;
-    border: 2px solid #ccc;
+    background-color: var(--container);
+    border: 2px solid var(--secondary);
     border-radius: 4px;
     margin: 20px;
 }
 
+.google-calendar-link {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    padding: 0px 15px;
+    border: 1px solid var(--secondary);
+    border-radius: 4px;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: var(--primary-container);
+    transition: background 0.2s;
+}
+
+.google-calendar-link:hover {
+    background: var(--third-container);
+}
+
 .event-add {
     padding: 20px;
-    background-color: #f0f0f0;
-    border: 2px solid #ccc;
+    background-color: var(--bg-color);
+    border: 2px solid var(--secondary);
     border-radius: 4px;
     margin: 20px;
 }
 
 aside#right {
     grid-area: right-column;
-    background-color: lightsalmon;
+    background-color: var(--third-container);
     padding: 20px;
 }
 footer {
     grid-area: footer;
-    background-color: lightblue;
+    background-color: var(--third);
 }

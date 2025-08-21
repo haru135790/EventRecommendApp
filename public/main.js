@@ -18,22 +18,31 @@ eventFindForm.addEventListener("submit", async (event) => {
 
     if (response.ok) {
         console.log(result);
-        const resultList = document.getElementById("search-result-list");
-        resultList.innerHTML = ""; // 既存の内容をクリア
+        const resultList = document.getElementById("search-result-table").getElementsByTagName("tbody")[0];
+
+        while (resultList.firstChild) {
+            resultList.removeChild(resultList.firstChild);
+        }
 
         result.forEach(event => {
-            const li = document.createElement("li");
+            const tr = document.createElement("tr");
             const link = document.createElement("a");
-            li.textContent = `${event.event_name} - ${event.event_start} ～ ${event.event_end} - ${event.event_location} `;
+            tr.innerHTML = `
+                <td>${event.event_name}</td>
+                <td>${event.event_start} ～ ${event.event_end}</td>
+                <td>${event.event_location}</td>
+            `;
+            const td = document.createElement("td");
             link.classList.add("google-calendar-link");
             link.href = "#";
-            link.textContent = "Google Calendarに追加";
+            link.textContent = "追加";
             link.addEventListener("click", (e) => {
                 e.preventDefault();
                 addEventForGoogleCalendar(event);
             });
-            li.appendChild(link);
-            resultList.appendChild(li);
+            td.appendChild(link);
+            tr.appendChild(td);
+            resultList.appendChild(tr);
         });
         console.log(`検索結果: ${JSON.stringify(result)}`);
     } else {
@@ -76,5 +85,5 @@ const addEventForGoogleCalendar = (eventData) => {
 
     const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${eventDate}/${eventDate}&location=${eventLocation}`;
 
-    globalThis.window.open(googleCalendarUrl, '_blank');
+    globalThis.window.open(googleCalendarUrl);
 };
