@@ -26,7 +26,7 @@ globalThis.window.addEventListener('DOMContentLoaded', async function() {
             button.textContent = "予定を削除";
             button.addEventListener("click", (e) => {
                 e.preventDefault();
-                deleteEvent(data.key[1]);
+                deleteEvent(data.key[2]);
             });
             td.appendChild(button);
             tr.appendChild(td);
@@ -42,12 +42,15 @@ const deleteEvent = async (id) => {
     if (!globalThis.window.confirm("イベントを削除しますか？")) {
         return;
     }
+
+    const password = globalThis.window.prompt("パスワードを入力してください", "", "password");
+
     const response = await fetch("/delete-event", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({ id, password }),
     });
     const result = await response.json();
 

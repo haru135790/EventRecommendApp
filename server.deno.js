@@ -72,11 +72,37 @@ Deno.serve(async (req) => {
 
   // イベント削除処理
   if (req.method === "POST" && pathname === "/delete-event") {
-    const { id } = await req.json();
-    await kv.delete(["event", id]);
+    const { id, password } = await req.json();
+    const cookie = req.headers.get("cookie") || "";
+    const username = (() => {
+      const match = cookie.match(/username=([^;]+)/);
+      return match ? decodeURIComponent(match[1]) : "default";
+    })();
+    const user = await kv.get(["user", username]);
+
+    if (!user || !user.value) {
+      return new Response(JSON.stringify({ message: "認証に失敗しました" }), { status: 401 });
+    }
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+
+    if (user.value.password !== hashHex) {
+      return new Response(JSON.stringify({ message: "認証に失敗しました" }), { status: 401 });
+    }
+
+    console.log(`Deleting event with ID: ${id} for user: ${username}`);
+
+    const event = await kv.get(["event", username, id]);
+    if (!event.value) {
+      return new Response(JSON.stringify({ message: "イベントが見つかりません" }), { status: 404 });
+    }
+
+    await kv.delete(["event", username, id]);
     return new Response(JSON.stringify({ message: "イベント削除成功" }), { status: 200 });
   }
-
 
   // ユーザー登録処理
   if (req.method === "POST" && pathname === "/api/register") {
