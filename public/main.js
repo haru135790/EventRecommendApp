@@ -24,13 +24,13 @@ eventFindForm.addEventListener("submit", async (event) => {
             resultList.removeChild(resultList.firstChild);
         }
 
-        result.forEach(event => {
+        result.forEach(data => {
             const tr = document.createElement("tr");
             const link = document.createElement("a");
             tr.innerHTML = `
-                <td>${event.event_name}</td>
-                <td>${event.event_start} ～ ${event.event_end}</td>
-                <td>${event.event_location}</td>
+                <td>${data.value.event_name}</td>
+                <td>${data.value.event_start} ～ ${data.value.event_end}</td>
+                <td>${data.value.event_location}</td>
             `;
             const td = document.createElement("td");
             link.classList.add("google-calendar-link");
@@ -38,7 +38,7 @@ eventFindForm.addEventListener("submit", async (event) => {
             link.textContent = "追加";
             link.addEventListener("click", (e) => {
                 e.preventDefault();
-                addEventForGoogleCalendar(event);
+                addEventForGoogleCalendar(data.value);
             });
             td.appendChild(link);
             tr.appendChild(td);
@@ -79,11 +79,11 @@ eventAddForm.addEventListener("submit", async (event) => {
 });
 
 const addEventForGoogleCalendar = (eventData) => {
-    const eventTitle = encodeURIComponent(eventData.name);
+    const eventTitle = encodeURIComponent(eventData.event_name);
     const eventDate = document.getElementById("date").value;
-    const eventLocation = encodeURIComponent(eventData.location);
+    const eventLocation = encodeURIComponent(eventData.event_location);
 
-    const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${eventDate}/${eventDate}&location=${eventLocation}`;
+    const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${eventDate}&location=${eventLocation}`;
 
     globalThis.window.open(googleCalendarUrl);
 };

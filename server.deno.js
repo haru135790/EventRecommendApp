@@ -18,12 +18,12 @@ Deno.serve(async (req) => {
       const itemEnd = new Date(item.value.event_end);
       const eventDate = new Date(event.date);
 
-      console.log("Checking event:", item.value);
+      console.log("Checking event:", item);
       console.log(event);
       console.log("Item start:", itemStart, "Item end:", itemEnd, "Event date:", eventDate);
       if (itemStart <= eventDate && eventDate <= itemEnd) {
-        foundEvent.push(item.value);
-        console.log("Found event:", item.value);
+        foundEvent.push(item);
+        console.log("Found event:", item);
       }
     }
 
@@ -51,6 +51,13 @@ Deno.serve(async (req) => {
       events.push(item);
     }
     return new Response(JSON.stringify(events), { status: 200 });
+  }
+
+  // イベント削除処理
+  if (req.method === "POST" && pathname === "/delete-event") {
+    const { id } = await req.json();
+    await kv.delete(["event", id]);
+    return new Response(JSON.stringify({ message: "イベント削除成功" }), { status: 200 });
   }
 
   return serveDir(req, {
