@@ -6,12 +6,13 @@ eventFindForm.addEventListener("submit", async (event) => {
     event.preventDefault(); // submitイベントの本来の動作を止める
     const formData = new FormData(event.target);
     const eventData = Object.fromEntries(formData);
+    const username = document.cookie.split('; ').find(row => row.startsWith('username='));
     const response = await fetch("/find-event", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(eventData),
+        body: JSON.stringify({ username, ...eventData }),
     });
 
     const result = await response.json();
@@ -56,6 +57,7 @@ eventAddForm.addEventListener("submit", async (event) => {
     event.preventDefault(); // submitイベントの本来の動作を止める
     const formData = new FormData(event.target);
     const eventData = Object.fromEntries(formData);
+    const username = document.cookie.split('; ').find(row => row.startsWith('username='));
     const resultDiv = document.getElementById("event-add-result");
 
     const response = await fetch("/add-event", {
@@ -63,7 +65,7 @@ eventAddForm.addEventListener("submit", async (event) => {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(eventData),
+        body: JSON.stringify({ username, ...eventData }),
     });
 
     const result = await response.json();

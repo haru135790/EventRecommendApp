@@ -8,16 +8,16 @@
   <link rel="stylesheet" href="common.css">
 </head>
 <body>
-  <script src="main.js" defer></script>
   <header>
     <a href="/">ホーム</a>
     <div class="header-links">
       <a href="/how_to_use">使い方</a>
       <a href="/events">登録イベント一覧</a>
-      <a href="/login">ログイン</a>
+      <a href="/login" id="login_link">ログイン</a>
     </div>
   </header>
   <main>
+    <div id="account_info"></div>
     <h1>イベント推薦アプリへようこそ!</h1>
     <p>予定が空いたら行きたいイベント登録アプリ</p>
     <div class="event-list">
@@ -91,5 +91,7 @@
     <a href="/contact">Contact</a>
     <a href="/privacy">Privacy Policy</a>
   </footer>
+  <script src="main.js" defer></script>
+  <script src="user_state.js" defer></script>
 </body>
 </html>
