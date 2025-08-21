@@ -1,24 +1,26 @@
-# template-deno-dev
+# イベント管理アプリ
+このアプリは、ユーザーがイベントを追加、削除、検索できるシンプルなイベント管理システムです。  
+## アプリ
+[こちら](https://haru135790-eventrecomm-95.deno.dev/)からアプリを利用できます。
 
-[Deno](https://deno.land/)を使った開発のテンプレートです。  
-[Deno Deploy](https://deno.com/deploy)を利用して外部へ公開することを想定しています。  
+## 機能
 
-## Deno Deploy の利用方法
+- イベントの追加
+- イベントの削除
+- イベントの検索
+- ユーザー登録
+- ユーザーログイン
 
-↓以上の詳細は公式リファレンスへ。
+## 使用技術
 
-1. [Deno Deploy](https://deno.com/deploy)にアクセスして、右上の「Sign In」からGitHubアカウントでのOAuthログインでアカウントを作成orログインしてください。
-2. 青い「+ New Project」から「Create a project」画面に遷移して、「Deploy an existing GitHub repository」側から GitHub repository の「Select a repository」をクリック
-3. Create a project from GitHub の画面で、デプロイするリポジトリを選んでこのリポジトリをテンプレートにした場合は「No build step」で、メインのDenoのコードが書いてあるファイルをエントリポイントに指定して「Create & Deploy」します。
-4. ダイアログが出て Deployed になれば成功。右上の青い「View」からデプロイされたページが確認できるはずです。
+- Deno
+- Deno Deploy
+- Deno KV
 
-## コミットテンプレートとemoji prefixについて
+## 今後の予定
 
-コミットテンプレートは以下のようにして使用できます。  
-
-```shell
-cd <リポジトリ直下>
-git config commit.template ./.commit_template
-```
-
-emoji prefix にはコミット履歴が可愛くなる他にもメリットがありますが、コミット履歴が可愛くなるのが好きで使ってます。
+- UIの改善
+- 下記の機能を追加予定
+  - イベントの編集
+  - イベントの詳細表示
+  - 他ユーザーが公開したイベントの閲覧
