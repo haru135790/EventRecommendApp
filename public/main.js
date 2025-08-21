@@ -60,6 +60,11 @@ eventAddForm.addEventListener("submit", async (event) => {
     const username = document.cookie.split('; ').find(row => row.startsWith('username='));
     const resultDiv = document.getElementById("event-add-result");
 
+    if (eventData.event_start > eventData.event_end) {
+        resultDiv.textContent = "エラー : イベントの開始日時は終了日時より前である必要があります。";
+        return;
+    }
+
     const response = await fetch("/add-event", {
         method: "POST",
         headers: {
