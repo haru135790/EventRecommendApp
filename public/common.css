@@ -1,15 +1,15 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    --primary: #476730;
-    --primary-container: #c7eea9;
-    --secondary: #56624b;
-    --secondary-container: #d9e7ca;
+    --primary: #fea130;
+    --primary-container: #ffc47d;
+    --secondary: #33536a;
+    --secondary-container: #5084a9;
     --third: #386665;
     --third-container: #bbecea;
     --error: #ba1a1a;
     --error-container: #ffdad6;
-    --surface: #2e312a;
+    --surface: #3a3e40;
     --bg-color: #f9faf0;
     --container: #edefe4;
 
@@ -29,7 +29,7 @@ header {
     background-color: var(--primary-container);
     display: grid;
     grid-template: 
-    'logo header-links' 1fr / 80px auto;
+    'logo header-links' 1fr / 280px auto;
     position: sticky;
     top: 0;
 }
@@ -55,13 +55,9 @@ header {
 }
 
 .header-links a:hover {
-    background-color: var(--lighter-current);
+    background-color: var(--primary);
 }
 
-aside#left {
-    grid-area: left-column;
-    background-color: var(--bg-color);
-}
 main {
     min-height: calc(100vh - 160px);
     grid-area: main;
@@ -116,10 +112,10 @@ main {
 
 aside#right {
     grid-area: right-column;
-    background-color: var(--third-container);
+    background-color: var(--secondary-container);
     padding: 20px;
 }
 footer {
     grid-area: footer;
-    background-color: var(--third);
+    background-color: var(--primary-container);
 }
